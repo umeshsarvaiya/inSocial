@@ -4,10 +4,14 @@ import React from "react";
 const SearchInfluncer = ({ handleSearch }) => {
   return (
     <div>
-      <Box>
+      <Box sx={{height:"30px", width:"300px"}}>
         <TextField
-        sx={{backgroundColor:"white" , height:"50px",width:"300px"}}
-          label="Search for Influencer, Genre"
+        sx={{backgroundColor:"white" , marginTop:"10px",height:"50px",width:{ 
+          sm:"200px",
+          md:"300px",
+        
+         },borderRadius:"0px",borderColor: "white"}}
+          label="Search"
           variant="outlined"
           onChange={handleSearch}
         />

@@ -35,66 +35,73 @@ import SearchInfluncer from "./SearchInfluncer";
 import InfluncerTable from "./InfluncerTable";
 import InfluncerCard from "./InfluncerCard";
 
-import ListIcon from '@mui/icons-material/List';
+import ListIcon from "@mui/icons-material/List";
+
 const influencerData = [
   {
     id: 1,
     name: "Umesh ",
     image:
-      "https://cdn3.iconfinder.com/data/icons/gradient-general-pack/512/user-01-512.png",
+      "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA4L2pvYjEwMzQtZWxlbWVudC0wNy00MDMucG5n.png",
     genre: "Photography",
     engagement: 4,
     followers: 120000,
+    cpp: 50000,
     audienceGender: { male: 63, female: 30, others: 7 },
   },
   {
     id: 2,
     name: "Sarvaiya",
     image:
-      "https://cdn3.iconfinder.com/data/icons/gradient-general-pack/512/user-01-512.png",
+      "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA4L2pvYjEwMzQtZWxlbWVudC0wNy00MDMucG5n.png",
     genre: "Fashion",
     engagement: 5,
     followers: 150000,
+    cpp: 25000,
     audienceGender: { male: 40, female: 55, others: 5 },
   },
   {
     id: 3,
     name: "Vishal",
     image:
-      "https://cdn3.iconfinder.com/data/icons/gradient-general-pack/512/user-01-512.png",
+      "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA4L2pvYjEwMzQtZWxlbWVudC0wNy00MDMucG5n.png",
     genre: "Tech",
     engagement: 3,
     followers: 90000,
+    cpp: 27900,
     audienceGender: { male: 70, female: 20, others: 10 },
   },
   {
     id: 4,
     name: "Bhadresh",
     image:
-      "https://cdn3.iconfinder.com/data/icons/gradient-general-pack/512/user-01-512.png",
-    genre: "Tech",
+      "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA4L2pvYjEwMzQtZWxlbWVudC0wNy00MDMucG5n.png",
+    genre: "Software Engineer",
     engagement: 3,
     followers: 90000,
+    cpp: 21000,
     audienceGender: { male: 70, female: 20, others: 10 },
   },
   {
     id: 5,
-    name: "chauhan",
+    name: "vishal chauhan",
     image:
-      "https://cdn3.iconfinder.com/data/icons/gradient-general-pack/512/user-01-512.png",
-    genre: "Tech",
+      "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA4L2pvYjEwMzQtZWxlbWVudC0wNy00MDMucG5n.png",
+    genre: "Web developer",
     engagement: 3,
     followers: 90000,
+    cpp: 55000,
     audienceGender: { male: 70, female: 20, others: 10 },
   },
   {
     id: 6,
     name: "rahul",
     image:
-      "https://cdn3.iconfinder.com/data/icons/gradient-general-pack/512/user-01-512.png",
-    genre: "Tech",
+      "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA4L2pvYjEwMzQtZWxlbWVudC0wNy00MDMucG5n.png",
+    genre: "Engineer",
     engagement: 3,
     followers: 90000,
+    cpp: 25000,
     audienceGender: { male: 70, female: 20, others: 10 },
   },
 ];
@@ -108,6 +115,11 @@ const InfluencerList = () => {
   const [filterGenre, setFilterGenre] = useState("");
   const [filterEngagement, setFilterEngagement] = useState("");
   const [filterFollowers, setFilterFollowers] = useState("");
+  const [isCardView, setIsCardView] = useState(true); // Default view is card view
+
+  const handleToggleView = () => {
+    setIsCardView((prevView) => !prevView); // Toggle the boolean value
+  };
 
   const handleSearch = (e) => {
     setSearchText(e.target.value.toLowerCase());
@@ -169,67 +181,84 @@ const InfluencerList = () => {
         backgroundColor: "#F7F6F5",
       }}
     >
-      <Box sx={{ display: "flex", justifyContent: "right" }}>
-        <SearchInfluncer
-          handleSearch={handleSearch}
-        />
-        <IconButton
-          onClick={() => handleDialogToggle("favorites")}
-          sx={{
-            backgroundColor: "white",
-            width: "110px",
-            borderRadius: "10px",
-            margin: "10px",
-            "&:hover": {
-              backgroundColor: "#f0f0f0",
-            },
-          }}
-        >
-          <Typography>Favorite</Typography>
-          <Box sx={{ color: "red" }}>
-            <FavoriteIcon />
-          </Box>
-        </IconButton>
+      <Box
+        sx={{
+          position: "sticky",
+          top: 0,
+          zIndex: 1000,
+          backgroundColor: "#F7F6F5",
+          padding: 2,
+          borderBottom: "1px solid #ddd",
+        }}
+      >
+        <Box sx={{ display: "flex", justifyContent: "right" }}>
+          <SearchInfluncer handleSearch={handleSearch} />
+          <IconButton
+            onClick={() => handleDialogToggle("favorites")}
+            sx={{
+              backgroundColor: "white",
+              width: "110px",
+              borderRadius: "10px",
+              margin: "10px",
+              "&:hover": {
+                backgroundColor: "#f0f0f0",
+              },
+            }}
+          >
+            <Typography>Favorite</Typography>
+            <Box sx={{ color: "red" }}>
+              <FavoriteIcon />
+            </Box>
+          </IconButton>
 
-       
-        
+          <IconButton
+            onClick={() => handleDialogToggle("filter")}
+            sx={{
+              width: "110px",
+              height: "50px",
+              backgroundColor: "white",
+              borderRadius: "10px",
+              margin: "10px",
+              "&:hover": {
+                backgroundColor: "#f0f0f0",
+              },
+            }}
+          >
+            <Typography>Filter </Typography> <FilterListIcon />
+          </IconButton>
+        </Box>
+        <Box sx={{ display: "flex", color: "black", justifyContent: "right" }}>
+          <IconButton onClick={handleToggleView}>
+           
+            {isCardView ? <ListIcon /> : <ListIcon />}
+          </IconButton>
+        </Box>
 
-        <IconButton
-          onClick={() => handleDialogToggle("filter")}
-          sx={{
-            width: "110px",
-            height: "50px",
-            backgroundColor: "white",
-            borderRadius: "10px",
-            margin: "10px",
-            "&:hover": {
-              backgroundColor: "#f0f0f0",
-            },
-          }}
-        >
-          <Typography>Filter </Typography> <FilterListIcon />
-        </IconButton>
-      </Box>
-      {/* <IconButton
-          onClick={() => handleDialogToggle("favorites")}
-        >
 
-          <Box sx={{ color: "black" , justifyContent:"right"}}>
-            <ListIcon />
-          </Box>
-        </IconButton> */}
-  {/* <InfluncerTable
+        {isCardView ? (
+
+  <InfluncerTable
         handleSort={handleSort}
         filteredInfluencers={filteredInfluencers}
         toggleFavorite={toggleFavorite}
         favorites={favorites}
-      /> */}
-      <FavoriteInfluncer
-        openFavoritesDialog={openFavoritesDialog}
-        handleFavoritesDialogClose={() => handleDialogToggle("favorites")}
+      /> 
+        ):(
+          <InfluncerCard
+        handleSort={handleSort}
+        filteredInfluencers={filteredInfluencers}
+        toggleFavorite={toggleFavorite}
         favorites={favorites}
-        influencers={influencers}
       />
+        )}
+      
+        <FavoriteInfluncer
+          openFavoritesDialog={openFavoritesDialog}
+          handleFavoritesDialogClose={() => handleDialogToggle("favorites")}
+          favorites={favorites}
+          influencers={influencers}
+        />
+      </Box>
       <FilterInfluncer
         openFilterDialog={openFilterDialog}
         handleFilterDialogClose={() => handleDialogToggle("filter")}
@@ -241,12 +270,7 @@ const InfluencerList = () => {
         setFilterFollowers={setFilterFollowers}
         InfluncerFilters={() => handleDialogToggle("filter")}
       />
-   <InfluncerCard 
-     handleSort={handleSort}
-        filteredInfluencers={filteredInfluencers}
-        toggleFavorite={toggleFavorite}
-        favorites={favorites}
-   />
+     
     </Box>
   );
 };

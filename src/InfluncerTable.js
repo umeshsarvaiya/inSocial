@@ -44,7 +44,7 @@ const InfluncerTable = ({handleSort,filteredInfluencers,toggleFavorite,favorites
                   sx={{
                     display: "flex",
                     alignItems: "center",
-                    gap: 1,
+                    gap: 0,
                     cursor: "pointer",
                   }}
                   onClick={() => handleSort("engagement")}
@@ -59,7 +59,7 @@ const InfluncerTable = ({handleSort,filteredInfluencers,toggleFavorite,favorites
                   sx={{
                     display: "flex",
                     alignItems: "center",
-                    gap: 1,
+                    gap: 0,
                     cursor: "pointer",
                   }}
                   onClick={() => handleSort("followers")}
@@ -104,12 +104,12 @@ const InfluncerTable = ({handleSort,filteredInfluencers,toggleFavorite,favorites
                   {influencer.engagement}%
                 </TableCell>
                 <TableCell>
-                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                  <Box sx={{ display: "flex", alignItems: "center", gap:0 }}>
                     <PersonIcon fontSize="small" />
                     {influencer.followers.toLocaleString()}k
                   </Box>
                 </TableCell>
-                <TableCell>
+                <TableCell sx={{justifyContent:"right"}}>
                   Male: {influencer.audienceGender.male}% <br />
                   Female: {influencer.audienceGender.female}% <br />
                   Others: {influencer.audienceGender.others}%
