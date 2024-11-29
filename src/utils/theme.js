@@ -2,6 +2,7 @@
 import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
+<<<<<<< HEAD
 
   breakpoints: {
     values: {
@@ -12,6 +13,8 @@ const theme = createTheme({
       xl: 1920,
     },
   },
+=======
+>>>>>>> abfd27de4e2a11b278079a88e680cac2f36c06b7
   palette: {
     primary: {
       main: '#1976d2', 
